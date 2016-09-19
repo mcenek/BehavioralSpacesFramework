@@ -1,33 +1,27 @@
-function [ y ] = compressedheaders( range,dims )
-%dims must be >= 4
-%initialize variables
-for i = 2:dims
-    A = sprintf('%i',i);
-    eval (['res',A,'=zeros(1,i);']);
-end
-
-if dims == 3
-%create initial step
-for i = range:-1:0
-res2 = vertcat (res2,newsumtable (i));
-end
-res2 = res2(2:end,:);
-res3 = horzcat((range - sum(res2,2)),res2);
-end
-
-%iterate recursively to construct final table
-for i = dims:-1:4
-    A = sprintf('%i',i-1);
-    B = sprintf('%i',i);
-    eval (['pres',A,'=zeros(1,i-1);']);
-    for i2 = range:-1:0
-        pres = compressedheaders (i2,i-1);
-        eval (['res',A,'=vertcat(res',A,',pres);']);
+function [ y ] = compressedheaders( range )
+res = zeros (1,3);
+res (1,4) = range;
+i = 1;
+while 1
+    s2 = res (i,1) + res (i,2);
+    if (range-s2) == 0
+        if res (i,1) == range
+            break
+        else
+        ptable = horzcat (res (i,1) + 1,0,0,range - (res(i,1)+1));
+        res = vertcat (res,ptable);
+        i = i+1;
+        end
+    else
+        cdtable = sumtable (range-s2);
+        abtable = repmat (res (i,1:2),size(cdtable,1),1);
+        ptable = horzcat (abtable,cdtable);
+        res = vertcat (res,ptable);
+        ptable = horzcat (res (i,1),res (i,2) + 1,0,range - (res(i,1)+(res(i,2)+1)));
+        res = vertcat (res,ptable);
+        i = i + size (cdtable,1) + 1;
     end
-    eval (['res',A,'=res',A,'(2:end,:);']);
-    eval (['res',B,'=horzcat((range - sum(res',A,',2)),res',A,');']);
+end
+y = res;
 end
 
-A = sprintf ('%i',dims);
-eval (['y=uint8(res',A,');']);
-end

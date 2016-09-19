@@ -1,9 +1,8 @@
 function [ y ] = comptable( range,dims )
-%Generates a reference table for the size of the square transition table
-%RData in the main program. Useful for finding which combinations of range
-%and dimensions are computationally feasible, and for preallocating
-%matrices which store this data. 
-range = range+1;
+%UNTITLED Summary of this function goes here
+%   Detailed explanation goes here
+workspace
+range = range+1
 res = zeros (range,dims);
 res (1:range,1) = 1;
 res (1,1:dims) = 1;
