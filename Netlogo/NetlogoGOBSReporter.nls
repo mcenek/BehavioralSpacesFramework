@@ -1,0 +1,43 @@
+to report-position
+;Does not work with world wrapping
+  ask sockeye [
+    if (distancexy spx spy > threshold)
+    [set sx xcor
+     set sy ycor
+     set angle (atan (sx - spx) (sy - spy) )
+     set pmov floor (angle / (360 / dims) )
+     set pmov pmov + 1
+     set pmov word pmov ","
+     set pmov word pmov who
+     set pmov word pmov ","
+     set pmov word pmov ticks
+     set history word history ","
+     set history word history pmov
+     set spx xcor
+     set spy ycor]
+    ]
+end
+
+to finish
+  ;set iterations2 iterations2 + 1
+  ask sockeye [print-file]
+  file-close-all
+end
+
+to print-file
+  if ticks > 200 [
+    ifelse history = 0
+    [][
+  set history but-first history
+  set history but-first history
+  file-print history]]
+end
+
+
+to files
+  set filename "Watershed"
+  set filename word filename ".txt"
+  file-close-all
+  carefully [file-delete filename][]
+  file-open filename
+end
