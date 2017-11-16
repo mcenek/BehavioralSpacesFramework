@@ -1,0 +1,46 @@
+to report-position
+;Does not work with world wrapping
+  ask sockeyes [
+    if (distancexy spx spy > threshold)
+    [set sx xcor
+     set sy ycor
+     set angle (atan (sx - spx) (sy - spy) )
+     set pmov floor (angle / (360 / dims) )
+     set pmov pmov + 1
+     set pmov word pmov ","
+     set pmov word pmov who
+     set pmov word pmov ","
+     set pmov word pmov ticks
+     set pmov word pmov ","
+     ;set history word history ","
+     ;set history word history pmov
+     set history pmov
+     set spx xcor
+     set spy ycor]
+    ]
+end
+
+to finish
+  ;set iterations2 iterations2 + 1
+  ask sockeyes [print-file]
+  file-close-all
+end
+
+to print-file
+ ; if ticks > 200 [
+    ifelse history = 0
+    [][
+  file-print history];]
+end
+
+
+to files
+  ;let t-stamp date-and-time
+  set filename word "Sim-Results-" ticks
+  ;set filename word filename "-"
+  ;set filename word filename date-and-time
+  set filename word filename ".txt" 
+  file-close-all
+  carefully [file-delete filename][]
+  file-open filename
+end
