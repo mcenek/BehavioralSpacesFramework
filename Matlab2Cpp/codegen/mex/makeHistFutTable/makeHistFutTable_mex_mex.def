@@ -1,0 +1,17 @@
+LIBRARY makeHistFutTable_mex.mexw64
+EXPORTS
+mexFunction
+emlrtMexFcnProperties
+makeHistFutTable
+emxEnsureCapacity
+emxFree_boolean_T
+emxFree_int32_T
+emxFree_real_T
+emxFree_uint8_T
+emxInit_boolean_T
+emxInit_int32_T
+emxInit_real_T
+emxInit_uint8_T
+makeHistFutTable_initialize
+makeHistFutTable_terminate
+makeHistFutTable_atexit
