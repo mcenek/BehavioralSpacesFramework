@@ -15,12 +15,11 @@ thresholds = [0.6,0.9];
 %this is purely for convenience as each result is created and saved before
 %the next is computed, and results do not differ if each is computed
 %independently
-fnameprimitive = 'RandTSamp';
-for visionits = 13:14
+fnameprimitive = 'ImmediateTMAT';
+for visionits = 12
 clearvars -except SeededFirstRow TwoSampleChiSquare thresholds location range visionits skipped leadersnum blookup skippedzer totreps statreps fnameprimitive
 location = 0;
-importfile = sprintf ('DNAdata14.txt');
-%importfile = sprintf ('2015Backup_Code\\DNAdata2.txt',visionits);
+importfile = sprintf ('C:\\Users\\Spencer\\documents\\MATLAB\\Paper1Revision\\Netlogo\\DNA%ddata.txt',visionits);
 %Import path, must be changed to where data is. The model is currently
 %setup for non-delineated data, if results are in csv format the line
 %immediately below this comment should read 'testm = uint8(importfile1(importfile))';
@@ -159,7 +158,7 @@ for its = 0:(size(testm,1)-((range*2)))
     %if there is a 0 in the history or future of an agent, that indicates 
     %a break between one agent's history and the next, which is garbage
     %data and is therefore skipped
-    afut = testm(location+range:location+(range*2-1))';
+    afut = testm(location+1:location+range)';
     if isempty (find (afut == 0, 1))
         afut = compmat (afut);
     else

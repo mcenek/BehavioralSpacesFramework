@@ -19,8 +19,7 @@ fnameprimitive = 'RandTSamp';
 for visionits = 13:14
 clearvars -except SeededFirstRow TwoSampleChiSquare thresholds location range visionits skipped leadersnum blookup skippedzer totreps statreps fnameprimitive
 location = 0;
-importfile = sprintf ('DNAdata14.txt');
-%importfile = sprintf ('2015Backup_Code\\DNAdata2.txt',visionits);
+importfile = sprintf ('C:\\Users\\Spencer\\documents\\MATLAB\\Paper1Revision\\Netlogo\\DNA%ddata.txt',visionits);
 %Import path, must be changed to where data is. The model is currently
 %setup for non-delineated data, if results are in csv format the line
 %immediately below this comment should read 'testm = uint8(importfile1(importfile))';

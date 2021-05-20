@@ -19,7 +19,8 @@ fnameprimitive = 'ImmediateTMAT';
 for visionits = 12
 clearvars -except SeededFirstRow TwoSampleChiSquare thresholds location range visionits skipped leadersnum blookup skippedzer totreps statreps fnameprimitive
 location = 0;
-importfile = sprintf ('C:\\Users\\Spencer\\documents\\MATLAB\\Paper1Revision\\Netlogo\\DNA%ddata.txt',visionits);
+%importfile = sprintf ('C:\\Users\\Spencer\\documents\\MATLAB\\Paper1Revision\\Netlogo\\DNA%ddata.txt',visionits);
+importfile = sprintf ('DNAdata14.txt');
 %Import path, must be changed to where data is. The model is currently
 %setup for non-delineated data, if results are in csv format the line
 %immediately below this comment should read 'testm = uint8(importfile1(importfile))';

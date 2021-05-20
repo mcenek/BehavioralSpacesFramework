@@ -14,7 +14,8 @@ totreps = 1;
 
 ctable = comptable (range, dims);
 ressize = ctable (end,end);
-fnameprimitive = 'DNAIR';
+fnameprimitive = '/home/cenek/Documents/workspace/GOBS/DNAdata';
+%fnameprimitive = 'DNAIR';
 %columnheaders = compressedheaders (range,dims);
 %use this line of code to find the behavioral vectors which correspond to
 %each row and column of the transition matrix RData. The result should be
@@ -27,7 +28,10 @@ location = 0;
 its = 0;
 %Import path, must be changed to where data is
 
-importfile = sprintf ('C:\\Users\\Spencer\\documents\\MATLAB\\Netlogo\\%s%d.txt',fnameprimitive, its);
+importfile = sprintf ('%s%d.txt',fnameprimitive, its);
+%importfile = sprintf ('C:\\Users\\Spencer\\documents\\MATLAB\\Netlogo\\%s%d.txt',fnameprimitive, its);
+%testm = importwithtime (importfile);
+disp(importfile);
 testm = uint8 (importwithtime (importfile));
 % for its = 1:20
 %     importfile = sprintf ('C:\\Users\\Spencer\\documents\\MATLAB\\Netlogo\\%s%d.txt',fnameprimitive, its);
@@ -114,7 +118,7 @@ while size(chi2L) > 0
 end
 
 if skipped > 500
-    fname = sprintf ('NODATA%s',fnameprimitive);
+    fname = sprintf ('%sNODATA',fnameprimitive);
     exportdata (0,fname);
     continue
 end
